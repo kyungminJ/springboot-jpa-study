@@ -118,4 +118,17 @@ class UserRepositoryTest {
 //        System.out.println("findByNameEndingWith : " + userRepository.findByNameEndingWith("tin"));
 //        System.out.println("findByNameContains : " + userRepository.findByNameContains("art"));
     }
+
+    @Test
+    void pagingAndSortingTest() {
+//        System.out.println("findTop1ByName : " + userRepository.findTop1ByName("martin"));
+//        System.out.println("findLast1ByName : " + userRepository.findLast1ByName("martin")); // Last1 은 없는 키워드이므로 의도한대로 실행 안됨
+//        System.out.println("findTop1ByNameOrderByIdDesc : " + userRepository.findTop1ByNameOrderByIdDesc("martin"));
+//        System.out.println("findTopByNameOrderByIdDesc : " + userRepository.findTopByNameOrderByIdDesc("martin"));
+//        System.out.println("findFirstByNameOrderByIdDescEmailAsc : " + userRepository.findFirstByNameOrderByIdDescEmailAsc("martin"));
+//        System.out.println("findFirstByNameWithSortParams : " + userRepository.findFirstByName("marin", Sort.by(Sort.Order.desc("id"), Sort.Order.asc("email"))));
+
+        System.out.println("findByNameWithPaging : " + userRepository.findByName("martin", PageRequest.of(0, 1, Sort.by(Sort.Order.desc("id")))).getContent());
+        System.out.println("findByNameWithPaging : " + userRepository.findByName("martin", PageRequest.of(1, 1, Sort.by(Sort.Order.desc("id")))).getTotalElements());
+    }
 }

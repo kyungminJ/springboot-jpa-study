@@ -1,6 +1,9 @@
 package com.testcampus.jpa.bookmanager.repository;
 
 import com.testcampus.jpa.bookmanager.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
@@ -52,4 +55,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByNameStartingWith(String name);
     List<User> findByNameEndingWith(String name);
     List<User> findByNameContains(String name);
+
+    List<User> findTop1ByName(String name);
+    List<User> findTop1ByNameOrderByIdDesc(String name);
+    List<User> findTopByNameOrderByIdDesc(String name);
+    List<User> findFirstByNameOrderByIdDescEmailAsc(String Name);
+    List<User> findFirstByName(String name, Sort sort);
+
+    Page<User> findByName(String name, Pageable pageable);
 }
